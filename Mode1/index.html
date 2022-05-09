@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pierre/Feuille/Ciseaux</title>
+  </head>
+  <body>
+    <div id="boutonDiv">
+      <button class="jouer">
+        <span class="textSigne">Pierre</span> <span class="fas fa-hand-rock"></span></i>
+      </button>
+      <button class="jouer"><span class="textSigne">Feuille</span> <span class="fas fa-hand-paper"></span></button>
+      <button class="jouer"><span class="textSigne">Ciseaux</span> <span class="fas fa-hand-scissors"></span></button>
+    </div>
+
+    <div id="resultat"></div>
+
+    <div id="vs">
+      <div class="img"></div>
+      <div id="vsText"></div>
+      <div class="img"></div>
+    </div>
+
+    <div id="score">
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Essai</th>
+            <th>Joueur</th>
+            <th>Ordinateur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="résumé"></td>
+            <td class="résumé"></td>
+            <td class="résumé"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+3 modes d'IA : 
+1.	aléatoire (pas d'IA ;-)
+2.	un "IA" très simple qui se base sur les stats sur choix de l'humain (ex, l'humain choisit tout le temps papier, donc il va certainement choisir encore papier)
+3.	un "IA" très simple qui tente de trouver un pattern de 2 ou 3 coups dans l'historique des coups joués.

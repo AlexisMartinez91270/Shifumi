@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Générale */
+body {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Boutons */
+#boutonDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 60%;
+  height: 10%;
+}
+#boutonDiv button {
+  color: white;
+  cursor: pointer;
+  margin: 3% 0;
+  padding: 1% 3%;
+}
+#boutonDiv button:nth-child(1) {
+  background-color: rgb(231, 55, 55);
+}
+#boutonDiv button:nth-child(1):hover {
+  background-color: rgb(170, 36, 36);
+}
+#boutonDiv button:nth-child(2) {
+  background-color: rgb(39, 179, 226);
+}
+#boutonDiv button:nth-child(2):hover {
+  background-color: rgb(19, 129, 165);
+}
+#boutonDiv button:nth-child(3) {
+  background-color: rgb(39, 206, 39);
+}
+#boutonDiv button:nth-child(3):hover {
+  background-color: rgb(21, 185, 21);
+}
+
+/* Résultat */
+#resultat {
+  font-size: xx-large;
+  text-align: center;
+  font-weight: bold;
+  margin: 3% 0;
+}
+
+/* Vs */
+#vs {
+  margin: 3% 0;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+#vs .img {
+  flex: 2;
+  height: 300px;
+  transform: rotate(180deg);
+}
+#vs .img img {
+  height: 100%;
+  width: 100%;
+}
+#vs .img:first-of-type {
+  transform: rotate(0deg);
+}
+#vsText {
+  flex: 1;
+  font-size: xx-large;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Score */
+#score {
+  margin: 3% 0;
+  display: none;
+}
+#score table {
+  margin: auto;
+  text-align: center;
+  width: 70%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 2px solid black;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 35%;
+}
+
+thead th:nth-child(3) {
+  width: 35%;
+}
+th,
+td {
+  border: 2px solid black;
+  padding: 20px;
+}
+td:nth-child(2),
+td:nth-child(3) {
+  color: white;
+}

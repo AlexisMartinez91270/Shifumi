@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr-FR" dir="ltr">
+    <head>
+        <title>Tableaux</title>
+        <meta name="description" content="Cours HTML5 sur les Tableaux">
+        <meta name="author" content="Alexis M">
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+        <a href="../index.html">Duel</a>
+        <a href="Skill.html">Skill</a>
+        <a href="Tableaux.html">Tableaux</a>
+
+        <h1>Les Tableaux en HTML5</h1>
+
+        <h2>Version 1</h2>
+        <table border="1">
+            <caption>Mon Tableau</caption> <!--Titre du tableau-->
+            <tr> <!--Table Row = LIGNE-->
+                <th>N°</th> <!--Table Head = CELLULE D'ENTETE-->
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>QI</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <td>Nom</td> <!--Table Data = CELLULE DE DONNEES-->
+                <td>Alexis</td>
+                <td>125</td>
+            </tr>
+        </table>
+
+        <h2>Version 2</h2>
+        <table border="1">
+            <caption>Mon Tableau Fusionné</caption>
+            <tr>
+                <th rowspan="2">Tableau</th> <!--ROWSPAN = Fusion de lignes-->
+                <th colspan="2">2021</th> <!--COLSPAN = Fusion de colonnes-->
+            </tr>
+            <tr>
+                <th>S1</th>
+                <th>S2</th>
+            </tr>
+            <tr>
+                <th>A</th>
+                <td colspan="2" rowspan="2">vanille</td>
+            </tr>
+            <tr>
+                <th>B</th>
+            </tr>
+        </table>
+
+        <h2>Version 3</h2>
+        <table border="1" summary="Résumé des notes et moyennes en Web des deux semestre de l'éleve avec une moyenne de 15 au 1er et de 14 au 2nd">
+            <caption>Moyenne Web S1 & S2</caption>
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>S1</th>
+                    <th>S2</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Moyenne</th>
+                    <td>14</td>
+                    <td>13</td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <th>Note1</th>
+                    <td>15</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <th>Note2</th>
+                    <td>12</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <th>Note3</th>
+                    <td>15</td>
+                    <td>14</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>
