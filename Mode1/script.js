@@ -15,6 +15,8 @@ const vs = document.getElementById("vs");
 const score = document.getElementById("score");
 const img = document.getElementsByClassName("img");
 const vsText = document.getElementById("vsText");
+const fin = document.getElementById("fin");
+const boutonRejouer = document.getElementById("boutonRejouer");
 
 for (let i = 0; i < boutonsJouer.length; i++) {
   boutonsJouer[i].addEventListener("click", function () {
@@ -62,5 +64,41 @@ for (let i = 0; i < boutonsJouer.length; i++) {
       résumé[1].style.backgroundColor = "orange";
       résumé[2].style.backgroundColor = "orange";
     }
+
+    if (pointsJoueur == 3 || pointsRobot == 3) {
+      for (let i = 0; i < boutonsJouer.length; i++) {
+        boutonsJouer[i].disabled = true;
+        boutonsJouer[i].style.cursor = "default";
+      }
+
+      if (pointsJoueur > pointsRobot) {
+        fin.innerHTML =
+          '<b>Bravo, vous avez gagné ! <span class="far fa-grin-tongue-wink"></span></b>';
+        fin.style.color = "green";
+      } else if (pointsRobot > pointsJoueur) {
+        fin.innerHTML =
+          'Dommage, vous avez perdu ! <span class="far fa-grin-tongue-wink"></span>';
+        fin.style.color = "red";
+      }
+
+      boutonRejouer.style.display = "block";
+    }
   });
 }
+
+boutonRejouer.addEventListener("click", function () {
+  for (let i = 0; i < boutonsJouer.length; i++) {
+    boutonsJouer[i].disabled = false;
+    boutonsJouer[i].style.cursor = "pointer";
+  }
+
+  boutonRejouer.style.display = "none";
+  score.style.display = "none";
+  vs.style.display = "none";
+  fin.innerHTML = "";
+  resultatAffichage.innerHTML = "";
+
+  pointsJoueur = 0;
+  pointsRobot = 0;
+  essai = 0;
+});
