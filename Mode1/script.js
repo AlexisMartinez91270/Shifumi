@@ -18,87 +18,106 @@ const vsText = document.getElementById("vsText");
 const fin = document.getElementById("fin");
 const boutonRejouer = document.getElementById("boutonRejouer");
 
+// Evénement "click" du bouton
 for (let i = 0; i < boutonsJouer.length; i++) {
   boutonsJouer[i].addEventListener("click", function () {
     essai++;
-    joueur = textSignes[i].textContent;
-    robot =
-      textSignes[Math.floor(Math.random() * textSignes.length)].textContent;
-    if (joueur === robot) {
-      resultatAffichage.innerHTML =
-        'Egalité ! <span class="far fa-meh"></span>';
-      resultatAffichage.style.color = "orange";
-    } else if (
-      (joueur == "Pierre" && robot == "Ciseaux") ||
-      (joueur == "Feuille" && robot == "Pierre") ||
-      (joueur == "Ciseaux" && robot == "Feuille")
-    ) {
-      resultatAffichage.innerHTML =
-        'Gagné ! <span class="far fa-grin-tongue-wink"></span>';
-      resultatAffichage.style.color = "green";
-      pointsJoueur++;
-    } else {
-      resultatAffichage.innerHTML =
-        'Perdu ! <span class="far fa-sad-cry"></span>';
-      resultatAffichage.style.color = "red";
-      pointsRobot++;
-    }
-
-    vs.style.display = "flex";
-    score.style.display = "block";
-
-    img[0].innerHTML = `<img src="images/${joueur}.gif"></img>`;
-    vsText.innerHTML = "<p>VS</p>";
-    img[1].innerHTML = `<img src="images/${robot}.gif"></img>`;
-
-    résumé[0].innerHTML = `<b>${essai}°</b>`;
-    résumé[1].innerHTML = `<b>${pointsJoueur}</b>`;
-    résumé[2].innerHTML = `<b>${pointsRobot}</b>`;
-    if (pointsJoueur > pointsRobot) {
-      résumé[1].style.backgroundColor = "green";
-      résumé[2].style.backgroundColor = "red";
-    } else if (pointsRobot > pointsJoueur) {
-      résumé[1].style.backgroundColor = "red";
-      résumé[2].style.backgroundColor = "green";
-    } else {
-      résumé[1].style.backgroundColor = "orange";
-      résumé[2].style.backgroundColor = "orange";
-    }
+    recupSignes(i);
+    résultat();
+    affichage();
 
     if (pointsJoueur == 3 || pointsRobot == 3) {
-      for (let i = 0; i < boutonsJouer.length; i++) {
-        boutonsJouer[i].disabled = true;
-        boutonsJouer[i].style.cursor = "default";
-      }
-
-      if (pointsJoueur > pointsRobot) {
-        fin.innerHTML =
-          '<b>Bravo, vous avez gagné ! <span class="far fa-grin-tongue-wink"></span></b>';
-        fin.style.color = "green";
-      } else if (pointsRobot > pointsJoueur) {
-        fin.innerHTML =
-          'Dommage, vous avez perdu ! <span class="far fa-grin-tongue-wink"></span>';
-        fin.style.color = "red";
-      }
-
-      boutonRejouer.style.display = "block";
+      finale();
     }
   });
 }
 
-boutonRejouer.addEventListener("click", function () {
+boutonRejouer.addEventListener("click", rejouer);
+
+// Mes fonctions
+function recupSignes(position) {
+  joueur = textSignes[position].textContent;
+  robot = textSignes[Math.floor(Math.random() * textSignes.length)].textContent;
+}
+
+function résultat() {
+  if (joueur === robot) {
+    resultatAffichage.innerHTML = 'Egalité ! <span class="far fa-meh"></span>';
+    resultatAffichage.className = "orange";
+  } else if (
+    (joueur == "Pierre" && robot == "Ciseaux") ||
+    (joueur == "Feuille" && robot == "Pierre") ||
+    (joueur == "Ciseaux" && robot == "Feuille")
+  ) {
+    resultatAffichage.innerHTML =
+      'Gagné ! <span class="far fa-grin-tongue-wink"></span>';
+    resultatAffichage.className = "green";
+    pointsJoueur++;
+  } else {
+    resultatAffichage.innerHTML =
+      'Perdu ! <span class="far fa-sad-cry"></span>';
+    resultatAffichage.className = "red";
+    pointsRobot++;
+  }
+}
+
+function affichage() {
+  vs.className = "active-flex";
+  score.className = "active";
+
+  img[0].innerHTML = `<img src="images/${joueur}.gif"></img>`;
+  vsText.innerHTML = "<p>VS</p>";
+  img[1].innerHTML = `<img src="images/${robot}.gif"></img>`;
+
+  résumé[0].innerHTML = `<b>${essai}°</b>`;
+  résumé[1].innerHTML = `<b>${pointsJoueur}</b>`;
+  résumé[2].innerHTML = `<b>${pointsRobot}</b>`;
+
+  résumé[1].className = "résumé";
+  résumé[2].className = "résumé";
+  if (pointsJoueur > pointsRobot) {
+    résumé[1].classList.add("win");
+    résumé[2].classList.add("win");
+  } else if (pointsRobot > pointsJoueur) {
+    résumé[1].classList.add("lose");
+    résumé[2].classList.add("lose");
+  } else {
+    résumé[1].classList.add("tie");
+    résumé[2].classList.add("tie");
+  }
+}
+
+function finale() {
+  boutonRejouer.className = "active";
+
   for (let i = 0; i < boutonsJouer.length; i++) {
-    boutonsJouer[i].disabled = false;
-    boutonsJouer[i].style.cursor = "pointer";
+    boutonsJouer[i].disabled = true;
   }
 
-  boutonRejouer.style.display = "none";
-  score.style.display = "none";
-  vs.style.display = "none";
+  if (pointsJoueur > pointsRobot) {
+    fin.innerHTML =
+      '<b>Bravo, vous avez gagné ! <span class="far fa-grin-tongue-wink"></span></b>';
+    fin.classList.add("green");
+  } else if (pointsRobot > pointsJoueur) {
+    fin.innerHTML =
+      'Dommage, vous avez perdu ! <span class="far fa-sad-cry"></span>';
+    fin.classList.add("red");
+  }
+}
+
+function rejouer() {
+  for (let i = 0; i < boutonsJouer.length; i++) {
+    boutonsJouer[i].disabled = false;
+  }
+
+  boutonRejouer.className = "inactive";
+  score.className = "inactive";
+  vs.className = "inactive";
   fin.innerHTML = "";
+  fin.className = "";
   resultatAffichage.innerHTML = "";
 
   pointsJoueur = 0;
   pointsRobot = 0;
   essai = 0;
-});
+}

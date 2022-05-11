@@ -4,6 +4,23 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Margin */
+  --margin: 2% 0;
+  --marginFin: 1% 0;
+
+  /* Padding */
+  --padingButton: 1% 3%;
+
+  /* Couleur Boutons */
+  --redButton: rgb(231, 55, 55);
+  --redButtonHover: rgb(170, 36, 36);
+  --blueButton: rgb(39, 179, 226);
+  --blueButtonHover: rgb(19, 129, 165);
+  --greenButton: rgb(39, 206, 39);
+  --greenButtonHover: rgb(21, 185, 21);
+}
+
 /* Générale */
 body {
   width: 80%;
@@ -12,6 +29,20 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+button {
+  cursor: pointer;
+  padding: var(--padingButton);
+}
+
+button:disabled {
+  background-color: grey;
+  color: black;
+  cursor: default;
+}
+button:disabled:hover {
+  background-color: grey;
 }
 
 /* Boutons */
@@ -24,27 +55,25 @@ body {
 }
 #boutonDiv button {
   color: white;
-  cursor: pointer;
-  margin: 2% 0;
-  padding: 1% 3%;
+  margin: var(--margin);
 }
 #boutonDiv button:nth-child(1) {
-  background-color: rgb(231, 55, 55);
+  background-color: var(--redButton);
 }
 #boutonDiv button:nth-child(1):hover {
-  background-color: rgb(170, 36, 36);
+  background-color: var(--redButtonHover);
 }
 #boutonDiv button:nth-child(2) {
-  background-color: rgb(39, 179, 226);
+  background-color: var(--blueButton);
 }
 #boutonDiv button:nth-child(2):hover {
-  background-color: rgb(19, 129, 165);
+  background-color: var(--blueButtonHover);
 }
 #boutonDiv button:nth-child(3) {
-  background-color: rgb(39, 206, 39);
+  background-color: var(--greenButton);
 }
 #boutonDiv button:nth-child(3):hover {
-  background-color: rgb(21, 185, 21);
+  background-color: var(--greenButtonHover);
 }
 
 /* Résultat */
@@ -52,14 +81,13 @@ body {
   font-size: x-large;
   text-align: center;
   font-weight: bold;
-  margin: 2% 0;
+  margin: var(--margin);
 }
 
 /* Vs */
 #vs {
-  margin: 2% 0;
+  margin: var(--margin);
   width: 100%;
-  display: none;
   justify-content: center;
   align-items: center;
 }
@@ -84,8 +112,7 @@ body {
 
 /* Score */
 #score {
-  margin: 2% 0;
-  display: none;
+  margin: var(--margin);
 }
 #score table {
   margin: auto;
@@ -119,20 +146,59 @@ td:nth-child(3) {
 
 /* Fin */
 #fin {
-  margin: 1% 0;
+  margin: var(--marginFin);
   font-size: x-large;
   font-weight: bold;
 }
 
 /* Rejouer */
 #boutonRejouer {
-  display: none;
   background-color: orange;
   color: white;
-  cursor: pointer;
-  margin: 1% 0;
-  padding: 1% 3%;
+  margin: var(--marginFin);
 }
 #boutonRejouer:hover {
   background-color: rgb(255, 132, 0);
+}
+
+/* Classe ajouté Js */
+/* Afficher ou non */
+.inactive {
+  display: none;
+}
+.active {
+  display: block;
+}
+.active-flex {
+  display: flex;
+}
+
+/* Couleur résultat*/
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+.orange {
+  color: orange;
+}
+
+/* Background-color tableau*/
+.win {
+  background-color: red;
+}
+.win:nth-child(2) {
+  background-color: green;
+}
+
+.lose {
+  background-color: green;
+}
+.lose:nth-child(2) {
+  background-color: red;
+}
+
+.tie {
+  background-color: orange;
 }
