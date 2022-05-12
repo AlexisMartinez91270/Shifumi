@@ -43,6 +43,18 @@ button:disabled {
   cursor: default;
 }
 
+/* DarkMode */
+#dark-lightMode {
+  margin-top: 0.7%;
+  align-self: end;
+  font-size: x-large;
+  cursor: pointer;
+  width: 20%;
+}
+#dark-lightMode span {
+  margin: 0 10%;
+}
+
 /* Boutons */
 #boutonDiv {
   display: flex;
