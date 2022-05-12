@@ -26,7 +26,24 @@ function play(choixJoueur) {
   essai++;
 
   choixJoueur = signes[choixJoueur];
+  // Choix Robot
+  let choixRobot = functChoixRobot(choixJoueur);
 
+  // Affichage des résultats en cours
+  affichageRésultat(choixJoueur, choixRobot);
+  containerAffichage.className = "active-flex";
+  affichageImages(choixJoueur, choixRobot);
+  affichageGraph();
+  affichageHistorique();
+
+  // Affichage du résultat finale
+  if (pointsJoueur == 5 || pointsRobot == 5) {
+    finale();
+  }
+}
+
+// Fonctions nécessaire au jeu
+function functChoixRobot(choixJoueur) {
   // Calcul du signe le plus joué
   if (choixJoueur == "Pierre") {
     nbSignesJoue[0]++;
@@ -46,21 +63,9 @@ function play(choixJoueur) {
   } else {
     choixRobot = signes[posMax + 1];
   }
-
-  // Affichage des résultats en cours
-  affichageRésultat(choixJoueur, choixRobot);
-  containerAffichage.className = "active-flex";
-  affichageImages(choixJoueur, choixRobot);
-  affichageGraph();
-  affichageHistorique();
-
-  // Affichage du résultat finale
-  if (pointsJoueur == 5 || pointsRobot == 5) {
-    finale();
-  }
+  return choixRobot;
 }
 
-// Fonctions nécessaire au jeu
 function affichageRésultat(choixJoueur, choixRobot) {
   if (choixJoueur === choixRobot) {
     résultat =
