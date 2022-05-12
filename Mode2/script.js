@@ -10,9 +10,10 @@ let essai = 0;
 // Data affichage
 const resultatAffichage = document.getElementById("resultat");
 const résumé = document.getElementsByClassName("résumé");
-const vs = document.getElementById("vs");
-const score = document.getElementById("score");
 const img = document.getElementsByClassName("img");
+const vsText = document.getElementById("vsText");
+let canvas = document.getElementById("WLgraph");
+let ctx = canvas.getContext("2d");
 const fin = document.getElementById("fin");
 const boutonRejouer = document.getElementById("boutonRejouer");
 
@@ -26,6 +27,18 @@ function play(choixJoueur) {
   if (pointsJoueur == 3 || pointsRobot == 3) {
     finale();
   }
+
+  ctx.clearRect(0, 0, 250, 500);
+  ctx.fillStyle = "rgb( 0, 255, 0)";
+  let winSquareMath = Math.floor(
+    (pointsJoueur / (pointsRobot + pointsJoueur)) * 490
+  );
+  ctx.fillRect(50, 500 - winSquareMath, 50, winSquareMath);
+  ctx.fillStyle = "rgb( 255, 0, 0)";
+  let lossSquareMath = Math.floor(
+    (pointsRobot / (pointsRobot + pointsJoueur)) * 490
+  );
+  ctx.fillRect(150, 500 - lossSquareMath, 50, lossSquareMath);
 
   essai++;
 }
@@ -57,6 +70,7 @@ function affichage(choixJoueur, choixRobot) {
   score.className = "active";
 
   img[0].innerHTML = `<img src="images/${choixJoueur}.gif"></img>`;
+  vsText.innerHTML = "<p>VS</p>";
   img[1].innerHTML = `<img src="images/${choixRobot}.gif"></img>`;
 
   résumé[0].innerHTML = `<b>${essai}°</b>`;

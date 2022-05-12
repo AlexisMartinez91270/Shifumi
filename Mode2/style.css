@@ -23,7 +23,7 @@
 
 /* Générale */
 body {
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -84,10 +84,16 @@ button:disabled:hover {
   margin: var(--margin);
 }
 
+/* Container */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Vs */
 #vs {
   margin: var(--margin);
-  width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -113,35 +119,6 @@ button:disabled:hover {
 /* Score */
 #score {
   margin: var(--margin);
-}
-#score table {
-  margin: auto;
-  text-align: center;
-  width: 70%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  border: 2px solid black;
-}
-
-thead th:nth-child(1) {
-  width: 30%;
-}
-
-thead th:nth-child(2) {
-  width: 35%;
-}
-
-thead th:nth-child(3) {
-  width: 35%;
-}
-th,
-td {
-  border: 2px solid black;
-  padding: 13px;
-}
-td:nth-child(2),
-td:nth-child(3) {
-  color: white;
 }
 
 /* Graphique */

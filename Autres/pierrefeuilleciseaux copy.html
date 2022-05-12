@@ -1,0 +1,125 @@
+    <html>
+    <head>
+        <title>Will the IA beat you?</title>
+        <style>
+            #WLgraph {
+                border: 1px solid black;
+                background-color: white;
+                position: absolute;
+                top: 100px;
+                left: 650px;
+            }
+        </style>
+    </head>
+    <body>
+        <button onclick="play(1)">Rock</button>
+        <button onclick="play(2)">Paper</button>
+        <button onclick="play(3)">Cisors</button>
+        <div id="WinLogs"></div>
+        <canvas id="WLgraph" width="250" height="500"></canvas>
+        <script>
+            let codeRPC = ["zero","rock","paper","cisors"];
+            let codeWLT = ["no one, the game is tie","IA","human"];
+            function resolveBattle(humanChoice, IAChoice){
+                if(humanChoice<1|| humanChoice>3){console.log("Invalid human choice"); return -1;}
+                if(IAChoice<1|| IAChoice>3){console.log("Invalid IA choice"); return -1;}
+                if(humanChoice==IAChoice){
+                    return 0;
+                }
+                
+                let negative = (humanChoice - IAChoice) < 0;
+                let impair = (humanChoice + IAChoice)%2 > 
+                0;
+                if(negative==impair){
+                    numLoss +=1;
+                    return 1;
+                }
+                numWin +=1;
+                return 2;
+                
+                
+            
+            }
+            let canvas = document.getElementById("WLgraph");
+            let ctx = canvas.getContext("2d");
+
+            let WinLogsDiv = document.getElementById("WinLogs");
+            
+            function randomInteger(min,max){
+                min2 = Math.ceil(min);
+                max2 = Math.floor(max);
+                return Math.floor(Math.random() * (max2 - min2 +1)) + min;
+            }
+            let count = 1;
+            let numWin = 0;
+            let numLoss =0;
+            let responseData = [];
+            let lastFiveAnswers = [];
+            let result; 
+
+            function IAdecides(){
+                let IAchoice;
+                let chunkAnalysisSize = 5;
+                while(chunkAnalysisSize>0){
+                    let sample=[];
+                    let sampleMakerE = chunkAnalysisSize;
+                    while(sampleMakerE>0){
+                        sample.push(lastFiveAnswers[chunkAnalysisSize-sampleMakerE]);
+                        sampleMakerE-=1;
+                    }
+                    let dataCheckE = 1;
+                    while(dataCheckE<responseData.length-(chunkAnalysisSize-3)){
+                        let chunkAnalysis=[];
+                        let chunkAnalysisMakerE = chunkAnalysisSize;
+                        while(chunkAnalysisMakerE>0){
+                            chunkAnalysis.push(responseData[dataCheckE+(chunkAnalysisSize-chunkAnalysisMakerE)]);
+                            chunkAnalysisMakerE-=1;
+                        }
+                        if(sample==chunkAnalysis){
+                            alert("we got there");
+                            let presumedHumanChoice=responseData[dataCheckE-1];
+                            return deduceIAChoice(presumedHumanChoice);
+                        }
+                        dataCheckE+=1;
+                    }
+                    chunkAnalysisSize-=1;
+                }
+                IAchoice = randomInteger(1,3);
+                return IAchoice;
+            }
+            function deduceIAChoice(presumedHumanChoice){
+                let whatIAShouldChoose = presumedHumanChoice+1;
+                if(whatIAShouldChoose == 4){
+                    whatIAShouldChoose = 1;
+                }
+                return whatIAShouldChoose;
+            }
+            function addToData(humanPlayed){
+                responseData.unshift(humanPlayed);
+            }
+            function changeLastAnswers(humanPlayed){
+                lastFiveAnswers.unshift(humanPlayed);
+                if(lastFiveAnswers.length>5){
+                    lastFiveAnswers.pop();
+                }
+            }
+            function play(humanChoice){
+                let IAChoice = IAdecides();
+                let winner = resolveBattle(humanChoice, IAChoice);
+                addToData(humanChoice);
+                changeLastAnswers(humanChoice);
+                WinLogsDiv.innerHTML = count + ": " + `human played ${codeRPC[humanChoice]} and IA played ${codeRPC[IAChoice]}, winner is ${codeWLT[winner]}.` + "<br/>" + WinLogsDiv.innerHTML;
+                
+                ctx.clearRect( 0, 0, 250, 500);
+                ctx.fillStyle = "rgb( 0, 255, 0)";
+                let winSquareMath = Math.floor(numWin/(numLoss+numWin)*490);
+                ctx.fillRect( 50, 500-winSquareMath ,50 ,winSquareMath);
+                ctx.fillStyle = "rgb( 255, 0, 0)";
+                let lossSquareMath = Math.floor(numLoss/(numLoss+numWin)*490);
+                ctx.fillRect( 150, 500-lossSquareMath ,50 ,lossSquareMath);
+
+                count += 1;
+            }
+        </script>
+    </body>
+</html>
