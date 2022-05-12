@@ -37,12 +37,7 @@ button {
 }
 
 button:disabled {
-  background-color: grey;
-  color: black;
   cursor: default;
-}
-button:disabled:hover {
-  background-color: grey;
 }
 
 /* Boutons */
@@ -74,6 +69,15 @@ button:disabled:hover {
 }
 #boutonDiv button:nth-child(3):hover {
   background-color: var(--greenButtonHover);
+}
+
+/* Bouton désactivé */
+#boutonDiv button:disabled {
+  background-color: grey;
+  color: black;
+}
+#boutonDiv button:disabled:hover {
+  background-color: grey;
 }
 
 /* Résultat */

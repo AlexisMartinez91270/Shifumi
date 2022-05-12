@@ -5,13 +5,16 @@ const boutonsJouer = document.getElementsByClassName("jouer");
 const signes = ["Pierre", "Feuille", "Ciseaux"];
 let pointsRobot = 0;
 let pointsJoueur = 0;
+let résultat = "";
 let essai = 0;
 
 // Data affichage
 const resultatAffichage = document.getElementById("resultat");
-const résumé = document.getElementsByClassName("résumé");
+const containerAffichage = document.getElementById("containerAffichage");
+const historique = document.getElementById("historique");
 const img = document.getElementsByClassName("img");
-const vsText = document.getElementById("vsText");
+const divPointsJoueur = document.getElementById("divPointsJoueur");
+const divPointsRobot = document.getElementById("divPointsRobot");
 let canvas = document.getElementById("WLgraph");
 let ctx = canvas.getContext("2d");
 const fin = document.getElementById("fin");
@@ -21,74 +24,74 @@ const boutonRejouer = document.getElementById("boutonRejouer");
 function play(choixJoueur) {
   choixJoueur = signes[choixJoueur];
   const choixRobot = signes[Math.floor(Math.random() * signes.length)];
-  résultat(choixJoueur, choixRobot);
-  affichage(choixJoueur, choixRobot);
+  affichageRésultat(choixJoueur, choixRobot);
 
-  if (pointsJoueur == 3 || pointsRobot == 3) {
+  containerAffichage.className = "active-flex";
+  affichageImages(choixJoueur, choixRobot);
+  affichageGraph();
+  affichageHistorique();
+
+  if (pointsJoueur == 5 || pointsRobot == 5) {
     finale();
   }
-
-  ctx.clearRect(0, 0, 250, 500);
-  ctx.fillStyle = "rgb( 0, 255, 0)";
-  let winSquareMath = Math.floor(
-    (pointsJoueur / (pointsRobot + pointsJoueur)) * 490
-  );
-  ctx.fillRect(50, 500 - winSquareMath, 50, winSquareMath);
-  ctx.fillStyle = "rgb( 255, 0, 0)";
-  let lossSquareMath = Math.floor(
-    (pointsRobot / (pointsRobot + pointsJoueur)) * 490
-  );
-  ctx.fillRect(150, 500 - lossSquareMath, 50, lossSquareMath);
 
   essai++;
 }
 
 // Fonctions nécessaire au jeu
-function résultat(choixJoueur, choixRobot) {
+function affichageRésultat(choixJoueur, choixRobot) {
   if (choixJoueur === choixRobot) {
-    resultatAffichage.innerHTML = 'Egalité ! <span class="far fa-meh"></span>';
-    resultatAffichage.className = "orange";
+    résultat =
+      '<span style="color: orange">Egalité ! <span class="far fa-meh"></span></span>';
   } else if (
     (choixJoueur == "Pierre" && choixRobot == "Ciseaux") ||
     (choixJoueur == "Feuille" && choixRobot == "Pierre") ||
     (choixJoueur == "Ciseaux" && choixRobot == "Feuille")
   ) {
-    resultatAffichage.innerHTML =
-      'Gagné ! <span class="far fa-grin-tongue-wink"></span>';
-    resultatAffichage.className = "green";
+    résultat =
+      '<span style="color: green">Gagné ! <span class="far fa-grin-tongue-wink"></span></span>';
     pointsJoueur++;
+    resultatAffichage.className = "green";
   } else {
-    resultatAffichage.innerHTML =
-      'Perdu ! <span class="far fa-sad-cry"></span>';
+    résultat =
+      '<span style="color: red">Perdu ! <span class="far fa-sad-cry"></span></span>';
     resultatAffichage.className = "red";
     pointsRobot++;
   }
+  resultatAffichage.innerHTML = résultat;
 }
 
-function affichage(choixJoueur, choixRobot) {
-  vs.className = "active-flex";
-  score.className = "active";
-
+function affichageImages(choixJoueur, choixRobot) {
   img[0].innerHTML = `<img src="images/${choixJoueur}.gif"></img>`;
-  vsText.innerHTML = "<p>VS</p>";
   img[1].innerHTML = `<img src="images/${choixRobot}.gif"></img>`;
+}
 
-  résumé[0].innerHTML = `<b>${essai}°</b>`;
-  résumé[1].innerHTML = `<b>${pointsJoueur}</b>`;
-  résumé[2].innerHTML = `<b>${pointsRobot}</b>`;
-
-  résumé[1].className = "résumé";
-  résumé[2].className = "résumé";
-  if (pointsJoueur > pointsRobot) {
-    résumé[1].classList.add("win");
-    résumé[2].classList.add("win");
-  } else if (pointsRobot > pointsJoueur) {
-    résumé[1].classList.add("lose");
-    résumé[2].classList.add("lose");
+function affichageGraph() {
+  ctx.clearRect(0, 0, 250, 380);
+  if ((pointsJoueur == 0) & (pointsRobot == 0)) {
+    ctx.fillStyle = "rgb( 0, 255, 0)";
+    ctx.fillRect(50, 190, 50, 190);
+    ctx.fillStyle = "rgb( 255, 0, 0)";
+    ctx.fillRect(200, 190, 50, 190);
   } else {
-    résumé[1].classList.add("tie");
-    résumé[2].classList.add("tie");
+    ctx.fillStyle = "rgb( 0, 255, 0)";
+    let winSquareMath = Math.floor(
+      (pointsJoueur / (pointsRobot + pointsJoueur)) * 380
+    );
+    ctx.fillRect(50, 380 - winSquareMath, 50, winSquareMath);
+    ctx.fillStyle = "rgb( 255, 0, 0)";
+    let lossSquareMath = Math.floor(
+      (pointsRobot / (pointsRobot + pointsJoueur)) * 380
+    );
+    ctx.fillRect(200, 380 - lossSquareMath, 50, lossSquareMath);
   }
+
+  divPointsJoueur.innerHTML = `<b>${pointsJoueur}</b>`;
+  divPointsRobot.innerHTML = `<b>${pointsRobot}</b>`;
+}
+
+function affichageHistorique() {
+  historique.innerHTML += `Partie ${essai} : ${résultat}<br>`;
 }
 
 function finale() {
@@ -100,12 +103,10 @@ function finale() {
 
   if (pointsJoueur > pointsRobot) {
     fin.innerHTML =
-      '<b>Bravo, vous avez gagné ! <span class="far fa-grin-tongue-wink"></span></b>';
-    fin.classList.add("green");
+      '<b style="color: green">Bravo, vous avez gagné ! <span class="far fa-grin-tongue-wink"></span></b>';
   } else if (pointsRobot > pointsJoueur) {
     fin.innerHTML =
-      'Dommage, vous avez perdu ! <span class="far fa-sad-cry"></span>';
-    fin.classList.add("red");
+      '<b style="color: red">Dommage, vous avez perdu ! <span class="far fa-sad-cry"></span></b>';
   }
 }
 
@@ -115,11 +116,11 @@ function rejouer() {
   }
 
   boutonRejouer.className = "inactive";
-  score.className = "inactive";
-  vs.className = "inactive";
+  containerAffichage.className = "inactive";
   fin.innerHTML = "";
   fin.className = "";
   resultatAffichage.innerHTML = "";
+  historique.innerHTML = "";
 
   pointsJoueur = 0;
   pointsRobot = 0;
