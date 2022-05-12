@@ -7,6 +7,7 @@ let pointsRobot = 0;
 let pointsJoueur = 0;
 let résultat = "";
 let essai = 0;
+let nbSignesJoue = [0, 0, 0];
 
 // Data affichage
 const resultatAffichage = document.getElementById("resultat");
@@ -22,20 +23,41 @@ const boutonRejouer = document.getElementById("boutonRejouer");
 
 // Evénement "click" du bouton (fonction play)
 function play(choixJoueur) {
-  choixJoueur = signes[choixJoueur];
-  const choixRobot = signes[Math.floor(Math.random() * signes.length)];
-  affichageRésultat(choixJoueur, choixRobot);
+  essai++;
 
+  choixJoueur = signes[choixJoueur];
+
+  // Calcul du signe le plus joué
+  if (choixJoueur == "Pierre") {
+    nbSignesJoue[0]++;
+  } else if (choixJoueur == "Feuille") {
+    nbSignesJoue[1]++;
+  } else {
+    nbSignesJoue[2]++;
+  }
+  let posMax = nbSignesJoue.indexOf(Math.max.apply(null, nbSignesJoue));
+
+  // Le robot choisi pour contrer selon le signe le plus joué
+  let choixRobot;
+  if (essai < 5) {
+    choixRobot = signes[Math.floor(Math.random() * signes.length)];
+  } else if (posMax == 2) {
+    choixRobot = signes[0];
+  } else {
+    choixRobot = signes[posMax + 1];
+  }
+
+  // Affichage des résultats en cours
+  affichageRésultat(choixJoueur, choixRobot);
   containerAffichage.className = "active-flex";
   affichageImages(choixJoueur, choixRobot);
   affichageGraph();
   affichageHistorique();
 
+  // Affichage du résultat finale
   if (pointsJoueur == 5 || pointsRobot == 5) {
     finale();
   }
-
-  essai++;
 }
 
 // Fonctions nécessaire au jeu
@@ -91,7 +113,7 @@ function affichageGraph() {
 }
 
 function affichageHistorique() {
-  historique.innerHTML += `Partie ${essai} : ${résultat}<br>`;
+  historique.innerHTML += `<div>Partie ${essai} : ${résultat}<br></div>`;
 }
 
 function finale() {

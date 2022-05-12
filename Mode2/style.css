@@ -24,6 +24,8 @@
 
 /* Générale */
 body {
+  background-color: rgb(47, 48, 49);
+  color: aliceblue;
   width: 80%;
   margin: auto;
   display: flex;
@@ -95,11 +97,16 @@ button:disabled {
   align-items: center;
   margin: var(--margin);
   height: 400px;
+  width: 100%;
 }
 
 /* Historique */
 #historique {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: var(--marginContainer);
 }
 
