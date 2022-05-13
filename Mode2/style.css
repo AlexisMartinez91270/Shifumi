@@ -24,8 +24,6 @@
 
 /* Générale */
 body {
-  background-color: rgb(47, 48, 49);
-  color: aliceblue;
   width: 80%;
   margin: auto;
   display: flex;
@@ -43,7 +41,7 @@ button:disabled {
   cursor: default;
 }
 
-/* DarkMode */
+/* Bouton DarkMode */
 #dark-lightMode {
   margin-top: 0.7%;
   align-self: end;
@@ -196,4 +194,14 @@ button:disabled {
 }
 .active-flex {
   display: flex;
+}
+
+/* darkMode */
+.dark {
+  background-color: rgb(47, 48, 49);
+  color: aliceblue;
+}
+.light {
+  background-color: white;
+  color: dark;
 }

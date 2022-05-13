@@ -157,11 +157,9 @@ function rejouer() {
 // Dark & Light Mode
 const body = document.querySelector("body");
 function darkMode() {
-  body.style.backgroundColor = "rgb(47, 48, 49)";
-  body.style.color = "aliceblue";
+  body.className = "dark";
 }
 
 function lightMode() {
-  body.style.backgroundColor = "white";
-  body.style.color = "black";
+  body.className = "light";
 }
