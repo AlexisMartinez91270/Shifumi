@@ -21,8 +21,8 @@ let canvas = document.getElementById("WLgraph");
 let ctx = canvas.getContext("2d");
 const fin = document.getElementById("fin");
 const boutonRejouer = document.getElementById("boutonRejouer");
-let modes = ["dark", "light"];
-let numMode = 0;
+let modes = ["light", "dark"];
+let numMode = 1;
 
 // Evénement "click" du bouton (fonction play)
 function play(choixJoueur) {
@@ -92,7 +92,7 @@ function affichageImages(choixJoueur, choixRobot) {
 
 function affichageGraph() {
   let win, lose;
-  if (numMode == 1) {
+  if (numMode == 0) {
     win = "rgb(21, 185, 21)";
     lose = "rgb(221, 9, 9)";
   } else {
@@ -159,7 +159,7 @@ function rejouer() {
 }
 
 // Dark & Light Mode
-function functMode(mode) {
+function darkMode(mode) {
   numMode = mode;
   body.className = modes[numMode];
 
