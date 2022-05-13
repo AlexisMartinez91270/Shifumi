@@ -10,6 +10,7 @@ let essai = 0;
 let nbSignesJoue = [0, 0, 0];
 
 // Data affichage
+const body = document.querySelector("body");
 const resultatAffichage = document.getElementById("resultat");
 const containerAffichage = document.getElementById("containerAffichage");
 const historique = document.getElementById("historique");
@@ -20,12 +21,13 @@ let canvas = document.getElementById("WLgraph");
 let ctx = canvas.getContext("2d");
 const fin = document.getElementById("fin");
 const boutonRejouer = document.getElementById("boutonRejouer");
+let modes = ["dark", "light"];
+let numMode = 0;
 
 // Evénement "click" du bouton (fonction play)
 function play(choixJoueur) {
   essai++;
 
-  choixJoueur = signes[choixJoueur];
   // Choix Robot
   let choixRobot = functChoixRobot(choixJoueur);
 
@@ -45,9 +47,9 @@ function play(choixJoueur) {
 // Fonctions nécessaire au jeu
 function functChoixRobot(choixJoueur) {
   // Calcul du signe le plus joué
-  if (choixJoueur == "Pierre") {
+  if (choixJoueur == 0) {
     nbSignesJoue[0]++;
-  } else if (choixJoueur == "Feuille") {
+  } else if (choixJoueur == 1) {
     nbSignesJoue[1]++;
   } else {
     nbSignesJoue[2]++;
@@ -57,56 +59,60 @@ function functChoixRobot(choixJoueur) {
   // Le robot choisi pour contrer selon le signe le plus joué
   let choixRobot;
   if (essai < 5) {
-    choixRobot = signes[Math.floor(Math.random() * signes.length)];
+    choixRobot = Math.floor(Math.random() * signes.length);
   } else if (posMax == 2) {
-    choixRobot = signes[0];
+    choixRobot = 0;
   } else {
-    choixRobot = signes[posMax + 1];
+    choixRobot = posMax + 1;
   }
   return choixRobot;
 }
 
 function affichageRésultat(choixJoueur, choixRobot) {
   if (choixJoueur === choixRobot) {
-    résultat =
-      '<span style="color: orange">Egalité ! <span class="far fa-meh"></span></span>';
+    résultat = `<span class="tie">Egalité ! <span class="far fa-meh"></span></span>`;
   } else if (
-    (choixJoueur == "Pierre" && choixRobot == "Ciseaux") ||
-    (choixJoueur == "Feuille" && choixRobot == "Pierre") ||
-    (choixJoueur == "Ciseaux" && choixRobot == "Feuille")
+    (choixJoueur == 0 && choixRobot == 2) ||
+    (choixJoueur == 1 && choixRobot == 0) ||
+    (choixJoueur == 2 && choixRobot == 1)
   ) {
-    résultat =
-      '<span style="color: green">Gagné ! <span class="far fa-grin-tongue-wink"></span></span>';
+    résultat = `<span class="win">Gagné ! <span class="far fa-grin-tongue-wink"></span></span>`;
     pointsJoueur++;
-    resultatAffichage.className = "green";
   } else {
-    résultat =
-      '<span style="color: red">Perdu ! <span class="far fa-sad-cry"></span></span>';
-    resultatAffichage.className = "red";
+    résultat = `<span class="lose">Perdu ! <span class="far fa-sad-cry"></span></span>`;
     pointsRobot++;
   }
   resultatAffichage.innerHTML = résultat;
 }
 
 function affichageImages(choixJoueur, choixRobot) {
-  img[0].innerHTML = `<img src="images/${choixJoueur}.gif"></img>`;
-  img[1].innerHTML = `<img src="images/${choixRobot}.gif"></img>`;
+  img[0].innerHTML = `<img src="images/${signes[choixJoueur]}.gif"></img>`;
+  img[1].innerHTML = `<img src="images/${signes[choixRobot]}.gif"></img>`;
 }
 
 function affichageGraph() {
+  let win, lose;
+  if (numMode == 1) {
+    win = "rgb(21, 185, 21)";
+    lose = "rgb(221, 9, 9)";
+  } else {
+    win = "#2069e0";
+    lose = "#a51d6f";
+  }
+
   ctx.clearRect(0, 0, 250, 380);
   if ((pointsJoueur == 0) & (pointsRobot == 0)) {
-    ctx.fillStyle = "rgb( 0, 255, 0)";
+    ctx.fillStyle = win;
     ctx.fillRect(50, 190, 50, 190);
-    ctx.fillStyle = "rgb( 255, 0, 0)";
+    ctx.fillStyle = lose;
     ctx.fillRect(200, 190, 50, 190);
   } else {
-    ctx.fillStyle = "rgb( 0, 255, 0)";
+    ctx.fillStyle = win;
     let winSquareMath = Math.floor(
       (pointsJoueur / (pointsRobot + pointsJoueur)) * 380
     );
     ctx.fillRect(50, 380 - winSquareMath, 50, winSquareMath);
-    ctx.fillStyle = "rgb( 255, 0, 0)";
+    ctx.fillStyle = lose;
     let lossSquareMath = Math.floor(
       (pointsRobot / (pointsRobot + pointsJoueur)) * 380
     );
@@ -129,11 +135,9 @@ function finale() {
   }
 
   if (pointsJoueur > pointsRobot) {
-    fin.innerHTML =
-      '<b style="color: green">Bravo, vous avez gagné ! <span class="far fa-grin-tongue-wink"></span></b>';
+    fin.innerHTML = `<b class="win">Bravo, vous avez gagné ! <span class="far fa-grin-tongue-wink"></span></b>`;
   } else if (pointsRobot > pointsJoueur) {
-    fin.innerHTML =
-      '<b style="color: red">Dommage, vous avez perdu ! <span class="far fa-sad-cry"></span></b>';
+    fin.innerHTML = `<b class="lose">Dommage, vous avez perdu ! <span class="far fa-sad-cry"></span></b>`;
   }
 }
 
@@ -155,11 +159,9 @@ function rejouer() {
 }
 
 // Dark & Light Mode
-const body = document.querySelector("body");
-function darkMode() {
-  body.className = "dark";
-}
+function functMode(mode) {
+  numMode = mode;
+  body.className = modes[numMode];
 
-function lightMode() {
-  body.className = "light";
+  affichageGraph();
 }

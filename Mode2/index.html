@@ -13,47 +13,50 @@
   </head>
   <body class="dark">
     <div id="dark-lightMode">
-      <span class="fa fa-moon" onclick="darkMode()"></span>
-      <span class="fa fa-sun" onclick="lightMode()"></span>
-    </div>
-    <div id="boutonDiv">
-      <button class="jouer" onclick="play(0)">
-        Pierre
-        <span class="fas fa-hand-rock"></span>
-      </button>
-      <button class="jouer" onclick="play(1)">
-        Feuille
-        <span class="fas fa-hand-paper"></span>
-      </button>
-      <button class="jouer" onclick="play(2)">
-        Ciseaux
-        <span class="fas fa-hand-scissors"></span>
-      </button>
+      <span class="fa fa-moon" onclick="functMode(0)"></span>
+      <span class="fa fa-sun" onclick="functMode(1)"></span>
     </div>
 
-    <div id="resultat"></div>
-
-    <div id="containerAffichage" class="inactive">
-      <div id="historique"></div>
-
-      <div id="vs">
-        <div class="img"></div>
-        <div id="vsText">VS</div>
-        <div class="img"></div>
+    <div class="container">
+      <div id="boutonDiv">
+        <button class="jouer" onclick="play(0)">
+          Pierre
+          <span class="fas fa-hand-rock"></span>
+        </button>
+        <button class="jouer" onclick="play(1)">
+          Feuille
+          <span class="fas fa-hand-paper"></span>
+        </button>
+        <button class="jouer" onclick="play(2)">
+          Ciseaux
+          <span class="fas fa-hand-scissors"></span>
+        </button>
       </div>
 
-      <div id="score">
-        <canvas id="WLgraph" height="400"></canvas>
-        <div id="divPointsJoueur" class="points"></div>
-        <div id="divPointsRobot" class="points"></div>
+      <div id="resultat"></div>
+
+      <div id="containerAffichage" class="inactive">
+        <div id="historique"></div>
+
+        <div id="vs">
+          <div class="img"></div>
+          <div id="vsText">VS</div>
+          <div class="img"></div>
+        </div>
+
+        <div id="score">
+          <canvas id="WLgraph" height="400"></canvas>
+          <div id="divPointsJoueur" class="points"></div>
+          <div id="divPointsRobot" class="points"></div>
+        </div>
       </div>
+
+      <div id="fin"></div>
+
+      <button class="inactive" id="boutonRejouer" onclick="rejouer()">
+        Rejouer <span class="far fa-hand-pointer"></span>
+      </button>
     </div>
-
-    <div id="fin"></div>
-
-    <button class="inactive" id="boutonRejouer" onclick="rejouer()">
-      Rejouer <span class="far fa-hand-pointer"></span>
-    </button>
 
     <script src="script.js"></script>
   </body>
