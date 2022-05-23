@@ -124,7 +124,7 @@ function affichageGraph() {
 }
 
 function affichageHistorique() {
-  historique.innerHTML += `<div>Partie ${essai} : ${résultat}  </div>`;
+  historique.innerHTML += `<div>Partie ${essai} : ${résultat}     </div>`;
 }
 
 function finale() {

@@ -22,9 +22,10 @@
 #historique {
   flex-direction: row;
   flex-wrap: wrap;
-  font-size: medium;
+  font-size: small;
   white-space: pre;
   margin-bottom: 7%;
+  justify-content: flex-start;
 }
 
 #score {
