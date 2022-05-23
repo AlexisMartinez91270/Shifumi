@@ -1,0 +1,24 @@
+#dark-lightMode {
+  font-size: medium;
+  flex-direction: column;
+}
+#dark-lightMode span {
+  margin: 5%;
+}
+
+#historique {
+  display: none;
+}
+
+#resultat {
+  margin-top: 7%;
+}
+
+#containerAffichage {
+  margin: 10% 0;
+}
+
+#fin {
+  margin-bottom: 5%;
+  font-size: 16px;
+}

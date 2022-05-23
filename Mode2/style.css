@@ -56,9 +56,10 @@ button:disabled {
 
 /* Bouton DarkMode */
 #dark-lightMode {
+  display: flex;
   position: absolute;
   top: 2vh;
-  left: 79vw;
+  right: 1vw;
   font-size: x-large;
   cursor: pointer;
   width: 20%;
@@ -139,8 +140,6 @@ button:disabled {
 /* Vs */
 #vs {
   flex: 2;
-  justify-content: center;
-  align-items: center;
   margin: var(--marginContainer);
 }
 #vs .img {
