@@ -6,8 +6,8 @@
   margin: 5%;
 }
 
-#historique {
-  display: none;
+.active-flex {
+  display: block;
 }
 
 #resultat {
@@ -15,10 +15,29 @@
 }
 
 #containerAffichage {
-  margin: 10% 0;
+  margin-top: 10%;
+  height: auto;
+}
+
+#historique {
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: medium;
+  white-space: pre;
+  margin-bottom: 7%;
+}
+
+#score {
+  transform: rotate(90deg);
+  height: 85vw;
+  margin-left: 15vw;
+}
+.points {
+  transform: rotate(-90deg);
 }
 
 #fin {
+  margin-top: -50px;
   margin-bottom: 5%;
-  font-size: 16px;
+  font-size: medium;
 }
