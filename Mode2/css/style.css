@@ -6,10 +6,9 @@
 
 :root {
   /* Margin */
-  --margin: 2% 0;
+  --margin: 5vh 0;
   --marginContainer: 0 2%;
-  --marginFin: 1% 0;
-  --marginBoutons: 0 2%;
+  --marginBoutons: 0 2vw;
 
   /* Padding */
   --padingButton: 1% 3%;
@@ -59,13 +58,13 @@ button:disabled {
   display: flex;
   position: absolute;
   top: 2vh;
-  right: 1vw;
+  right: 11vw;
   font-size: x-large;
   cursor: pointer;
-  width: 20%;
+  width: 10vw;
 }
-#dark-lightMode span {
-  margin: 0 5%;
+#dark-lightMode span:nth-child(2) {
+  margin-left: 30%;
 }
 
 /* Boutons */
@@ -73,8 +72,9 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 46%;
+  margin: var(--margin);
   margin-top: 2vh;
+  width: 35vw;
 }
 #boutonDiv button {
   flex: 1;
@@ -83,6 +83,7 @@ button:disabled {
 }
 #boutonDiv button:nth-child(1) {
   background-color: var(--redButton);
+  margin-left: 0;
 }
 #boutonDiv button:nth-child(1):hover {
   background-color: var(--redButtonHover);
@@ -95,6 +96,7 @@ button:disabled {
 }
 #boutonDiv button:nth-child(3) {
   background-color: var(--greenButton);
+  margin-right: 0;
 }
 #boutonDiv button:nth-child(3):hover {
   background-color: var(--greenButtonHover);
@@ -114,7 +116,7 @@ button:disabled {
   font-size: x-large;
   text-align: center;
   font-weight: bold;
-  margin-top: 2%;
+  margin: var(--margin);
 }
 
 /* Container */
@@ -186,7 +188,7 @@ button:disabled {
 
 /* Fin */
 #fin {
-  margin: var(--marginFin);
+  margin: var(--margin);
   font-size: x-large;
   font-weight: bold;
 }
@@ -195,7 +197,8 @@ button:disabled {
 #boutonRejouer {
   background-color: var(--orangeButton);
   color: white;
-  margin: var(--marginFin);
+  margin: var(--margin);
+  margin-top: 0;
 }
 #boutonRejouer:hover {
   background-color: var(--orangeButtonHover);

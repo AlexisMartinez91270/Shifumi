@@ -33,6 +33,7 @@ function play(choixJoueur) {
 
   // Affichage des résultats en cours
   affichageRésultat(choixJoueur, choixRobot);
+  resultatAffichage.className = "active";
   containerAffichage.className = "active-flex";
   affichageImages(choixJoueur, choixRobot);
   affichageGraph();
@@ -128,6 +129,7 @@ function affichageHistorique() {
 }
 
 function finale() {
+  resultatAffichage.className = "inactive";
   boutonRejouer.className = "active";
 
   for (let i = 0; i < boutonsJouer.length; i++) {
@@ -150,7 +152,6 @@ function rejouer() {
   containerAffichage.className = "inactive";
   fin.innerHTML = "";
   fin.className = "";
-  resultatAffichage.innerHTML = "";
   historique.innerHTML = "";
 
   pointsJoueur = 0;

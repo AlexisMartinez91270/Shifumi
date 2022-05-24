@@ -1,22 +1,33 @@
 #dark-lightMode {
   font-size: medium;
   flex-direction: column;
+  right: 5vw;
 }
-#dark-lightMode span {
-  margin: 5%;
+#dark-lightMode span:first-of-type {
+  margin-bottom: 3vh;
+}
+
+#boutonDiv {
+  flex-direction: column;
+}
+#boutonDiv button {
+  margin: 1vh 0;
+  width: 70px;
+}
+#boutonDiv button:first-of-type {
+  margin-top: 0;
+}
+#dark-lightMode span:nth-child(2) {
+  margin-left: 0;
 }
 
 .active-flex {
   display: block;
 }
 
-#resultat {
-  margin-top: 7%;
-}
-
 #containerAffichage {
-  margin-top: 10%;
   height: auto;
+  margin: 0;
 }
 
 #historique {
@@ -24,8 +35,8 @@
   flex-wrap: wrap;
   font-size: small;
   white-space: pre;
-  margin-bottom: 7%;
   justify-content: flex-start;
+  margin-bottom: 5vh;
 }
 
 #score {
@@ -38,7 +49,6 @@
 }
 
 #fin {
-  margin-top: -50px;
-  margin-bottom: 5%;
+  margin-top: -10%;
   font-size: medium;
 }
