@@ -1,0 +1,270 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Margin */
+  --margin: 5vh 0;
+  --marginContainer: 0 2%;
+  --marginBoutons: 0 2vw;
+
+  /* Padding */
+  --padingButton: 1% 3%;
+
+  /* Couleur Boutons */
+  --redButton: rgb(231, 55, 55);
+  --redButtonHover: rgb(170, 36, 36);
+  --blueButton: rgb(39, 179, 226);
+  --blueButtonHover: rgb(19, 129, 165);
+  --greenButton: rgb(39, 206, 39);
+  --greenButtonHover: rgb(21, 185, 21);
+  --yellowButton: rgb(252, 207, 5);
+  --yellowButtonHover: rgb(213, 176, 13);
+  --orangeButton: rgb(233, 124, 0);
+  --orangeButtonHover: rgb(216, 140, 0);
+
+  /* Couleurs */
+  /* light */
+  --win-light: rgb(21, 185, 21);
+  --lose-light: rgb(221, 9, 9);
+  --tie-light: rgb(233, 154, 9);
+  /* dark */
+  --win-dark: #2069e0;
+  --lose-dark: #a51d6f;
+  --tie-dark: #f4d47c;
+}
+
+/* Générale */
+.container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+  padding: var(--padingButton);
+}
+
+button:disabled {
+  cursor: default;
+}
+
+/* Bouton DarkMode */
+#dark-lightMode {
+  display: flex;
+  position: absolute;
+  top: 2vh;
+  right: 11vw;
+  font-size: x-large;
+  cursor: pointer;
+  width: 10vw;
+}
+#dark-lightMode span:nth-child(2) {
+  margin-left: 30%;
+}
+
+/* Boutons */
+#boutonDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: var(--margin);
+  margin-top: 2vh;
+  width: 35vw;
+  flex-wrap: wrap;
+}
+#boutonDiv button {
+  color: white;
+  width: 22%;
+}
+#boutonDiv button:nth-child(1) {
+  background-color: var(--redButton);
+  margin-left: 0;
+}
+#boutonDiv button:nth-child(1):hover {
+  background-color: var(--redButtonHover);
+}
+#boutonDiv button:nth-child(2) {
+  background-color: var(--blueButton);
+}
+#boutonDiv button:nth-child(2):hover {
+  background-color: var(--blueButtonHover);
+}
+#boutonDiv button:nth-child(3) {
+  background-color: var(--greenButton);
+}
+#boutonDiv button:nth-child(3):hover {
+  background-color: var(--greenButtonHover);
+}
+#boutonDiv button:nth-child(4) {
+  background-color: var(--yellowButton);
+  margin-right: 0;
+}
+#boutonDiv button:nth-child(4):hover {
+  background-color: var(--yellowButtonHover);
+}
+
+/* Bouton désactivé */
+#boutonDiv button:disabled {
+  background-color: grey;
+  color: black;
+}
+#boutonDiv button:disabled:hover {
+  background-color: grey;
+}
+
+/* Résultat */
+#resultat {
+  font-size: x-large;
+  text-align: center;
+  font-weight: bold;
+  margin: var(--margin);
+}
+
+/* Container */
+#container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: var(--margin);
+  height: 400px;
+  width: 100%;
+}
+#containerAffichage {
+  flex: 3;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Historique */
+#historique {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 1.5vw;
+  font-size: xx-large;
+  font-weight: bold;
+}
+.score {
+  margin: 10vh 0;
+}
+
+/* Vs */
+#vs {
+  flex: 2;
+  margin: var(--marginContainer);
+  margin-right: 5vw;
+}
+#vs .img {
+  flex: 2;
+  height: 180px;
+  margin: var(--margin);
+  transform: rotateY(180deg);
+}
+#vs .img img {
+  height: 100%;
+  width: 100%;
+}
+#vs .img:first-of-type {
+  transform: rotate(0deg);
+}
+#vsText {
+  flex: 1;
+  font-size: xx-large;
+  text-align: center;
+  font-weight: bold;
+  height: 40px;
+}
+
+/* Graphique */
+#graph {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#piechart {
+  width: 17vw;
+  height: 17vw;
+  border-radius: 50%;
+  background-image: conic-gradient(pink 180deg, lightblue 0 180deg);
+  justify-content: center;
+  align-items: center;
+}
+
+.points {
+  text-align: center;
+  width: 47%;
+  height: 5%;
+  float: left;
+  margin-top: 2vh;
+}
+
+/* Fin */
+#fin {
+  margin: var(--margin);
+  font-size: x-large;
+  font-weight: bold;
+}
+
+/* Rejouer */
+#boutonRejouer {
+  background-color: var(--orangeButton);
+  color: white;
+  margin: var(--margin);
+  margin-top: 0;
+}
+#boutonRejouer:hover {
+  background-color: var(--orangeButtonHover);
+}
+
+/* Classe ajouté Js */
+/* Afficher ou non */
+.inactive {
+  display: none;
+}
+.active {
+  display: block;
+}
+.active-flex {
+  display: flex;
+}
+
+/* darkMode */
+.dark {
+  background-color: rgb(47, 48, 49);
+  color: aliceblue;
+}
+.dark .win {
+  color: var(--win-dark);
+}
+.dark .lose {
+  color: var(--lose-dark);
+}
+.dark .tie {
+  color: var(--tie-dark);
+}
+
+/* lightMode */
+.light {
+  background-color: white;
+  color: black;
+}
+.light .win {
+  color: var(--win-light);
+}
+.light .lose {
+  color: var(--lose-light);
+}
+.light .tie {
+  color: var(--tie-light);
+}

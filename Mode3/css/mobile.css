@@ -1,0 +1,63 @@
+#dark-lightMode {
+  font-size: medium;
+  flex-direction: column;
+  right: 15vw;
+}
+#dark-lightMode span:first-of-type {
+  margin-bottom: 3vh;
+}
+
+#boutonDiv {
+  flex-direction: column;
+}
+#boutonDiv button {
+  margin: 1vh 0;
+  width: 80px;
+}
+#boutonDiv button:first-of-type {
+  margin-top: 0;
+}
+#dark-lightMode span:nth-child(2) {
+  margin-left: 0;
+}
+
+.active-flex {
+  display: block;
+}
+
+#container {
+  flex-direction: column;
+  height: auto;
+  margin: 0;
+}
+
+#historique {
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: large;
+  white-space: pre;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+.score {
+  margin: 0 7vw;
+}
+
+#graph {
+  justify-content: center;
+  align-items: center;
+}
+
+#divPoints {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.points {
+  width: 13%;
+}
+
+#fin {
+  font-size: medium;
+}

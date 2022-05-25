@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      media="screen and (max-width: 600px)"
+      href="css/mobile.css"
+    />
+    <link
+      rel="stylesheet"
+      media="screen and (min-width: 601px) and (max-width: 1000px)"
+      href="css/tablette.css"
+    />
+    <title>Pierre/Feuille/Ciseaux</title>
+  </head>
+  <body class="dark">
+    <div id="dark-lightMode">
+      <span class="fa fa-moon" onclick="darkMode(1)"></span>
+      <span class="fa fa-sun" onclick="darkMode(0)"></span>
+    </div>
+
+    <div class="container">
+      <div id="boutonDiv">
+        <button class="jouer" onclick="play(0)">
+          Pierre<br />
+          <span class="fas fa-hand-rock"></span>
+        </button>
+        <button class="jouer" onclick="play(1)">
+          Feuille<br />
+          <span class="fas fa-hand-paper"></span>
+        </button>
+        <button class="jouer" onclick="play(2)">
+          Ciseaux<br />
+          <span class="fas fa-hand-scissors"></span>
+        </button>
+        <button class="jouer" onclick="play(3)">
+          Aléatoire<br />
+          <span class="fa-solid fa-shuffle"></span>
+        </button>
+      </div>
+
+      <div id="resultat" class="inactive"></div>
+
+      <div id="container">
+        <div id="historique">
+          <div class="score">Joueur : <span id="nbWinJoueur">0</span></div>
+          <div class="score">Robot : <span id="nbWinRobot">0</span></div>
+        </div>
+
+        <div id="containerAffichage" class="inactive">
+          <div id="vs">
+            <div class="img"></div>
+            <div id="vsText">VS</div>
+            <div class="img"></div>
+          </div>
+
+          <div id="graph">
+            <div id="piechart"></div>
+            <div id="divPoints">
+              <div id="divPointsJoueur" class="points">2</div>
+              <div id="divPointsRobot" class="points">2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="fin"></div>
+
+      <button class="inactive" id="boutonRejouer" onclick="rejouer()">
+        Rejouer <span class="far fa-hand-pointer"></span>
+      </button>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
